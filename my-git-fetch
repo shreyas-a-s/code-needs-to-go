@@ -1,6 +1,6 @@
-#!/bin/sh
+!/bin/sh
 
-[ -f ~/.cache/my-git-fetch.tmp ] && { [ "$(stat -c %x ~/.cache/my-git-fetch.tmp | cut -d ' ' -f 1)" = "$(date -I)" ] && exit 1; }
+# [ -f ~/.cache/my-git-fetch.tmp ] && { [ "$(stat -c %x ~/.cache/my-git-fetch.tmp | cut -d ' ' -f 1)" = "$(date -I)" ] && exit 1; }
 
 command ping -c 1 example.org > /dev/null || { echo "my-git-fetch: Unable to connect to internet" && exit 1; }
 
@@ -13,5 +13,5 @@ for dirname in "$MY_GIT_DIR"/*/; do
   echo "$dirname"
   git -C "$dirname" fetch || { git -C "$dirname" remote set-url origin "$(git -C "$dirname" remote get-url origin --all | sed "s/https:\/\//git@/;s/\//:/;1q")" && git -C "$dirname" fetch; }
 
-done && touch ~/.cache/my-git-fetch.tmp
+done # && touch ~/.cache/my-git-fetch.tmp
 
