@@ -1,0 +1,10 @@
+tar
+xz-utils
+bzip2
+unrar-free
+gzip
+unzip
+p7zip-full
+cabextract
+cpio
+unace
