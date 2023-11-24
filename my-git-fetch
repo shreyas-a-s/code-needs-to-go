@@ -1,4 +1,4 @@
-!/bin/sh
+#!/bin/sh
 
 # [ -f ~/.cache/my-git-fetch.tmp ] && { [ "$(stat -c %x ~/.cache/my-git-fetch.tmp | cut -d ' ' -f 1)" = "$(date -I)" ] && exit 1; }
 
