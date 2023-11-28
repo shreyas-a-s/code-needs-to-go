@@ -1,0 +1,19 @@
+import os
+
+def get_file_extensions(folder_path):
+    extensions = set()
+
+    for _, _, files in os.walk(folder_path):
+        for file in files:
+            _, extension = os.path.splitext(file)
+            extensions.add(extension.lower())
+
+    return extensions
+
+# Replace 'your_folder_path' with the path of the directory you want to scan
+folder_path = '/'
+file_extensions = get_file_extensions(folder_path)
+
+print("File Extensions:")
+for extension in file_extensions:
+    print(extension)
