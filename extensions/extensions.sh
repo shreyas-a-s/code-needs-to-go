@@ -2,6 +2,7 @@
 
 # Change directory
 SCRIPT_DIR=$(dirname -- "$( readlink -f -- "$0"; )") && cd "$SCRIPT_DIR" || exit
+mkdir files && cd files || exit
 
 # Specify the input file
 inputfile="extensions.txt"
