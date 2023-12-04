@@ -18,6 +18,9 @@ if command -v nvim > /dev/null; then
     printf "\n\n Found a new version on Github. Installing it...\n"
     sleep 1
 
+    command -v pacman > /dev/null && sudo pacman -S --noconfirm gcc fuse
+    command -v apt-get > /dev/null && sudo apt-get install -y gcc fuse
+
     wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
     chmod +x nvim.appimage
     sudo mv nvim.appimage /usr/local/bin/nvim
