@@ -1,5 +1,17 @@
 #!/bin/sh
 
+if ! whereis fuse | awk '{print $2}' | grep -q fuse; then
+  printf "\nInstalling fuse which is a dependency of AppImages..."
+  command -v pacman > /dev/null && sudo pacman -S --noconfirm fuse
+  command -v apt-get > /dev/null && sudo apt-get install -y fuse
+fi
+
+if ! command -v gcc; then
+  printf "\nInstalling gcc which is a dependency of Treesitter plugin of neovim..."
+  command -v pacman > /dev/null && sudo pacman -S --noconfirm gcc
+  command -v apt-get > /dev/null && sudo apt-get install -y gcc
+fi
+
 printf "\nLooking for Neovim AppImage updates..."
 
 if command -v nvim > /dev/null; then
@@ -33,9 +45,6 @@ else
 
   printf "\n\nNeovim is not installed. Installing now...\n"
   sleep 1
-
-  command -v pacman > /dev/null && sudo pacman -S --noconfirm gcc fuse
-  command -v apt-get > /dev/null && sudo apt-get install -y gcc fuse
 
   wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
   chmod +x nvim.appimage
