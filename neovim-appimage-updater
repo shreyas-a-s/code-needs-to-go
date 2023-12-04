@@ -2,7 +2,7 @@
 
 printf "\nLooking for Neovim AppImage updates..."
 
-if whereis nvim | awk '{print $2}' | grep -q nvim; then
+if command -v nvim > /dev/null; then
   
   currentnvimversion=$(nvim -v | awk -F 'NVIM v' 'NR==1{print $2}')                                               
   latestnvimversion=$(curl -s https://github.com/neovim/neovim/releases/tag/stable | grep 'NVIM v' | awk -F 'NVIM v' 'NR==1{print $2}')
