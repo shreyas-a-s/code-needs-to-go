@@ -4,7 +4,7 @@
 sudo apt-get -y install flatpak
 dpkg-query -l | grep gnome-software > /dev/null && sudo apt-get -y install gnome-software-plugin-flatpak
 while ! flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo; do
-    sleep 1
+  sleep 1
 done
 
 # Change directory
@@ -15,17 +15,9 @@ inputfile="flatpak-applist.txt"
 
 # Check if the file exists
 if [ -e "$inputfile" ]; then
-
-    packages=""
-
-    while IFS= read -r package; do
-        packages="$packages $package"
-    done < "$inputfile"
-
-    # Install all packages at once
-    flatpak install -y flathub $packages
+  xargs flatpak install -y flathub < "$inputfile"
 else
-    echo "File does not exist: $inputfile"
+  echo "File does not exist: $inputfile"
 fi
 
 echo 'XDG_DATA_DIRS="/var/lib/flatpak/exports/share:$XDG_DATA_DIRS"' >> ~/.config/user-dirs.dirs
