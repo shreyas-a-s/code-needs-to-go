@@ -11,5 +11,11 @@ if [ -f /etc/inittab ]; then # For non-systemd distros
   \nif [ -z "\$DISPLAY" ] && [ \$(tty) == /dev/tty1 ]; then\
   \n  startx\
   \nfi" >> ~/.bash_profile
+else # For systemd distros
+  [ -d /etc/systemd/system/getty@tty1.service.d ] || sudo mkdir /etc/systemd/system/getty@tty1.service.d
+  printf "[Service]\
+  \nExecStart=\
+  \nExecStart=-/sbin/agetty -o '-p -f -- \\\\\\\\u' --noclear --autologin $USER %%I \$TERM\
+  \n" | sudo tee /etc/systemd/system/getty@tty1.service.d/autologin.conf > /dev/null
 fi
 
