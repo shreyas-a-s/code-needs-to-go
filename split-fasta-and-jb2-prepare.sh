@@ -12,6 +12,6 @@ find . -iname '*.fa' -exec samtools faidx \{\} \;
 
 find . -iname '*.fa' -print0 | sort -z | xargs -0 -I {} sh -c "jbrowse add-assembly '{}' --load copy --out $filename_without_ext"
 
-find . -iname '*.fa' -exec rm \{\} \;
-find . -iname '*.fai' -exec rm \{\} \;
+find . -maxdepth 1 -iname '*.fa' -exec rm {} \;
+find . -maxdepth 1 -iname '*.fai' -exec rm {} \;
 
