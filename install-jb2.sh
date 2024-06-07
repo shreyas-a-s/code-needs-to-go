@@ -8,7 +8,7 @@ nvm install 16
 # Installation
 npm install -g @jbrowse/cli
 jbrowse create jbrowse2
-sudo chown -R $USER:$USER /var/www/html/
+sudo chown -R "$USER":"$USER" /var/www/html/
 cp -r jbrowse2 /var/www/html/
 
 # Setup sample dataset
