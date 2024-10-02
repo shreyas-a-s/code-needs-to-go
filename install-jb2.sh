@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 # Install dependencies
-sudo apt install -y samtools tabix wget curl apache2
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-nvm install 16
+sudo apt install -y samtools tabix wget curl apache2 npm
 
 # Installation
 npm install -g @jbrowse/cli
